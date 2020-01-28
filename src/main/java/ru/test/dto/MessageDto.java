@@ -7,5 +7,7 @@ import lombok.ToString;
 @ToString
 public class MessageDto {
 
-    private String message;
+    private int messageId;
+    private String payload;
+
 }

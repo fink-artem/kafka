@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
-import ru.test.dto.MessageDto;
+import ru.test.dto.MessagesDto;
 
 @Slf4j
 @Component
@@ -17,12 +17,12 @@ public class MessageListener {
     private final MessageHandler messageHandler;
 
     @KafkaListener(topics = "message.topic")
-    public void consume(MessageDto dto) throws JsonProcessingException {
+    public void consume(MessagesDto dto) throws JsonProcessingException {
         log.info("=> consumed {}", writeValueAsString(dto));
         messageHandler.handle(dto);
     }
 
-    private String writeValueAsString(MessageDto dto) throws JsonProcessingException {
+    private String writeValueAsString(MessagesDto dto) throws JsonProcessingException {
         try {
             return objectMapper.writeValueAsString(dto);
         } catch (JsonProcessingException e) {

@@ -11,7 +11,7 @@
             </not>
         </preConditions>
         <createTable tableName="message">
-            <column name="message_id" type="varchar(255)">
+            <column name="message_id" type="bigint">
                 <constraints primaryKey="true"/>
             </column>
             <column name="message" type="varchar(255)"/>

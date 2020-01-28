@@ -9,7 +9,8 @@ public class MessageMapper {
 
     public Message messageDtoToMessage(MessageDto messageDto) {
         return Message.builder()
-                .message(messageDto.getMessage())
+                .messageId(messageDto.getMessageId())
+                .message(messageDto.getPayload())
                 .build();
     }
 }

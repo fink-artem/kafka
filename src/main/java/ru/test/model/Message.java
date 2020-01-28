@@ -20,7 +20,7 @@ public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String messageId;
+    private long messageId;
 
     @Column
     private String message;
