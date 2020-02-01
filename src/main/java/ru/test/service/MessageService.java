@@ -20,8 +20,8 @@ public class MessageService {
         try {
             return messageRepository.saveAll(message);
         } catch (Exception e) {
-            // TODO(a.fink): 29.01.2020  
+            log.error("Error during save message, {}", message);
+            return Collections.emptyList();
         }
-        return Collections.emptyList();
     }
 }
