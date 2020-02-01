@@ -8,6 +8,7 @@ import ru.test.mapper.MessageMapper;
 import ru.test.model.Message;
 import ru.test.service.MessageService;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,16 @@ public class MessageHandler {
 
     public void handle(MessagesDto messageDto) {
         List<Message> messages = messageDto.getMessages().stream()
+                .map(messageMapper::messageDtoToMessage)
+                .collect(Collectors.toList());
+
+        messageService.saveAll(messages);
+    }
+
+    public void handle(List<MessagesDto> messageDtos) {
+        List<Message> messages = messageDtos.stream()
+                .map(MessagesDto::getMessages)
+                .flatMap(Collection::stream)
                 .map(messageMapper::messageDtoToMessage)
                 .collect(Collectors.toList());
 
